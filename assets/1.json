@@ -1,0 +1,19 @@
+{
+    "name": "CONE-1",
+    "symbol": "MCDG",
+    "image": "1.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "1.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "FhhWjTSAz3gVjtaAqB3bEJcz355PdCyjkFxPuHVSTGda",
+          "share": 100
+        }
+      ]
+    }
+  }
