@@ -3,6 +3,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { programs } from '@metaplex/js';
+import CountdownTimer from '../CountdownTimer';
 import './CandyMachine.css';
 import {
   candyMachineProgram,
@@ -382,11 +383,25 @@ const CandyMachine = ({ walletAddress }) => {
     </div>
   );
 
+  const renderDropTimer = () => {
+    // get current date and time and store in a JS object
+    const currentDate = new Date();
+    const dropDate = new Date(machineStats.goLiveData * 1000);
+
+    // if currentDate is before dropDate, render countdown 
+    if (currentDate < dropDate) {
+      return <CountdownTimer dropDate={dropDate} />;
+    }
+
+    // Else let's just return the current drop date
+    return <p>{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>;
+  }
+
   return (
   // Only show this if machineStats is available
     machineStats && (
       <div className="machine-container">
-        <p>{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>
+        {renderDropTimer()}
         { (machineStats.itemsRedeemed === machineStats.itemsAvailable) ? 
           <div className="machine-container">
             <p>Sold Out!!</p>
